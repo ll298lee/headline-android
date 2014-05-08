@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country_list">
+        <item>tw_presses</item>
+        <item>us_presses</item>
+    </string-array>
+
+
+    <!--TAIWAN-->
+    <string-array name="tw_presses">
+        <item>100,聯合</item>
+        <item>101,蘋果</item>
+        <item>102,中時</item>
+    </string-array>
+
+    <string-array name="categories_100">
+        <item>國內要聞</item>
+        <item>兩岸</item>
+        <item>財經</item>
+        <item>政治</item>
+        <item>意見評論</item>
+        <item>國際</item>
+        <item>旅遊美食</item>
+    </string-array>
+
+    <string-array name="categories_101">
+        <item>最新</item>
+        <item>政治</item>
+        <item>財經</item>
+        <item>社會</item>
+        <item>論壇</item>
+        <item>正妹</item>
+        <item>娛樂</item>
+        <item>國際</item>
+    </string-array>
+
+    <string-array name="categories_102">
+        <item>即時新聞</item>
+        <item>兩岸</item>
+        <item>財經</item>
+        <item>政治</item>
+        <item>時論廣場</item>
+        <item>國際</item>
+        <item>娛樂</item>
+    </string-array>
+
+    <!--US-->
+    <string-array name="us_presses">
+        <item>101,US_PRESS0</item>
+        <item>102,US_PRESS1</item>
+        <item>100,US_PRESS2</item>
+    </string-array>
+
+
+</resources>
