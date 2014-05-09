@@ -1,33 +1,37 @@
 package com.djages.headline;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.app.ActionBarActivity;
 
 import com.djages.common.DebugLog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ll298lee on 5/8/14.
  */
 public class TabsPagerAdapter extends FragmentStatePagerAdapter {
-    private ArrayList<ArticleListFragment> mFragmentList;
+//    private ArrayList<ArticleListFragment> mFragmentList;
     private String[] mCategoryList;
+    private int mPressCode;
 
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
-        mFragmentList = new ArrayList<ArticleListFragment>();
+//        mFragmentList = new ArrayList<ArticleListFragment>();
     }
 
 
     @Override
     public Fragment getItem(int position) {
-
-        return mFragmentList.get(position);
-
+        String name = mCategoryList[position];
+        int code = Integer.parseInt((""+mPressCode)+position);
+        return ArticleListFragment.newInstance(name, code);
     }
 
     @Override
@@ -45,42 +49,15 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getItemPosition(Object object){
-        return PagerAdapter.POSITION_NONE;
+        return POSITION_NONE;
     }
 
 
     public void setPress(int pressCode){
         DebugLog.v(this, "select pressCode: " + pressCode);
+        ContentHelper.setPress(pressCode);
         mCategoryList = ContentHelper.getCategoryList(pressCode);
-        if(mFragmentList.size()>mCategoryList.length){
-            for(int i=mFragmentList.size()-1;i>=mCategoryList.length;i--) {
-                mFragmentList.remove(i);
-
-            }
-        }
-
-        //ensure size
-        mFragmentList.ensureCapacity(mCategoryList.length);
-        while (mFragmentList.size() < mCategoryList.length) {
-            mFragmentList.add(null);
-        }
-
-        for(int j=0; j<mCategoryList.length; j++){
-            String name = mCategoryList[j];
-            int code = Integer.parseInt((""+pressCode)+j);
-            ArticleListFragment fragment = mFragmentList.get(j);
-            if(fragment==null){
-                mFragmentList.set(j, ArticleListFragment.newInstance(name, code));
-            }else{
-                fragment.setCategory(name, code);
-                fragment.clearContent();
-            }
-        }
-
-
-
-
-
+        mPressCode = pressCode;
         notifyDataSetChanged();
     }
 }

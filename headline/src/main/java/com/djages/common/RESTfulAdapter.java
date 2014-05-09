@@ -75,6 +75,10 @@ public abstract class RESTfulAdapter<T extends AbstractModel> extends
         mListener = listener;
     }
 
+    public List<T> getModelList(){
+        return mList;
+    }
+
     public void fetch() {
         if(mFetchTask == null){
             mFetchTask = new FetchTask();

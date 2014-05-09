@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.djages.headline.ArticleWebviewActivity" >
+    <!--<item android:id="@+id/action_share"-->
+        <!--android:title="@string/action_share"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:icon="@drawable/ic_action_social_share"-->
+        <!--app:showAsAction="never"-->
+        <!-->-->
+        <!--<menu>-->
+            <!--<item android:id="@+id/copy_link"-->
+                <!--android:title="@string/share_copy_link"></item>-->
+            <!--<item android:id="@+id/share_to_apps"-->
+                <!--android:title="@string/share_to_other_app"></item>-->
+
+        <!--</menu>-->
+    <!--</item>-->
+    <item android:id="@+id/share_to_apps"
+        android:title="@string/share_to_other_app"
+        app:showAsAction="never"
+        >
+    </item>
+    <item android:id="@+id/open_in_browser"
+        android:title="@string/share_open_in_browser"
+        app:showAsAction="never"
+        >
+    </item>
+    <item android:id="@+id/copy_link"
+        android:title="@string/share_copy_link"
+        app:showAsAction="never"
+        >
+    </item>
+
+
+</menu>
