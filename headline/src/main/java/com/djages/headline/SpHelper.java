@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
  */
 public class SpHelper {
     public static final String KEY_COUNTRY_INDEX = "country_index";
+    public static final String KEY_PRESS_TAB_INDEX = "press_tab_index";
 
 
 

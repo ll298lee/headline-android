@@ -63,7 +63,8 @@ public class MainActivity extends AdsActivity implements
 
     private void refreshAll(){
         buildDrawer();
-        selectTab(0);
+        int pressTabIndex = SpHelper.getInt(SpHelper.KEY_PRESS_TAB_INDEX,0);
+        selectTab(pressTabIndex);
     }
 
     private void buildDrawer(){
@@ -90,7 +91,9 @@ public class MainActivity extends AdsActivity implements
     }
 
     private void selectTab(int index){
+
         DebugLog.v(this, "select tab: "+mDrawerTabAdapter.getItem(index).getName());
+        SpHelper.putInt(SpHelper.KEY_PRESS_TAB_INDEX, index);
         int[] pressCodeList = ContentHelper.getPressCodeList();
         String[] pressNameList = ContentHelper.getPressNameList();
         getSupportActionBar().setTitle(getString(R.string.app_name)+" - "+pressNameList[index]);
@@ -159,6 +162,7 @@ public class MainActivity extends AdsActivity implements
                 builder.setItems(countries, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int index) {
+                        SpHelper.putInt(SpHelper.KEY_PRESS_TAB_INDEX, 0);
                         ContentHelper.setCountry(index);
                         refreshAll();
                     }
