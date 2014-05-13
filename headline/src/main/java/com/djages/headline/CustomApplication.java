@@ -2,7 +2,9 @@ package com.djages.headline;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 
+import com.crashlytics.android.Crashlytics;
 import com.djages.common.ResolutionHelper;
 
 /**
@@ -16,6 +18,11 @@ public class CustomApplication extends Application{
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+
+        boolean isDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
+        if (!isDebuggable){
+            Crashlytics.start(this);
+        }
 
         setAppContext(getApplicationContext());
         ResolutionHelper.init(getApplicationContext());

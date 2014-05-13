@@ -2,8 +2,6 @@ package com.djages.headline;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.djages.common.DebugLog;
 
@@ -17,6 +15,7 @@ import java.util.Map;
 public class ContentHelper {
 
     private static final Map<String, Integer> resIdMap;
+    private static final Map<String, Integer> countryCodeMap;
     static {
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("tw_presses", R.array.tw_presses);
@@ -25,6 +24,11 @@ public class ContentHelper {
         map.put("categories_101", R.array.categories_101);
         map.put("categories_102", R.array.categories_102);
         resIdMap = Collections.unmodifiableMap(map);
+
+        Map<String, Integer> countryMap = new HashMap<String, Integer>();
+        map.put("TW", 0);
+        map.put("US",1);
+        countryCodeMap = Collections.unmodifiableMap(countryMap);
     }
 
 
@@ -44,7 +48,15 @@ public class ContentHelper {
         mCountryList = mContext.getResources().getStringArray(R.array.country_list);
 
         //get current selection in sp
-        int countryIndex = SpHelper.getInt(SpHelper.KEY_COUNTRY_INDEX, 0);
+
+        String country = mContext.getResources().getConfiguration().locale.getCountry();
+        DebugLog.v(this, "country of the device: "+ country);
+        int defaultCountry = 0;
+        if(countryCodeMap.containsKey(country)){
+            defaultCountry = countryCodeMap.get(country);
+        }
+
+        int countryIndex = SpHelper.getInt(SpHelper.KEY_COUNTRY_INDEX, defaultCountry);
         DebugLog.v(this, "country index in constructor: "+Integer.toString(countryIndex));
         _setCountry(countryIndex);
     }

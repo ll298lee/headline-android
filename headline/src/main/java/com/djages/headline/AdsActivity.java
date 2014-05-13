@@ -1,12 +1,8 @@
 package com.djages.headline;
 
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.ads.AdListener;

@@ -1,17 +1,10 @@
 package com.djages.headline;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.app.ActionBarActivity;
 
 import com.djages.common.DebugLog;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ll298lee on 5/8/14.
