@@ -1,6 +1,11 @@
 package com.djages.headline;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -15,12 +20,13 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.djages.common.DebugLog;
 import com.djages.common.SlidingTabLayout;
 
 
-public class MainActivity extends ActionBarActivity implements
+public class MainActivity extends AdsActivity implements
         AdapterView.OnItemClickListener,
         ViewPager.OnPageChangeListener,
         ArticleListFragment.OnFragmentInteractionListener{
@@ -33,6 +39,8 @@ public class MainActivity extends ActionBarActivity implements
     private ViewPager mTabViewPager;
     private TabsPagerAdapter mTabsAdapter;
     private SlidingTabLayout mTabsIndicator;
+
+    private boolean  mDoubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +59,9 @@ public class MainActivity extends ActionBarActivity implements
         mTabsIndicator.setSelectedIndicatorColors(getResources().getColor(R.color.color12));
         mTabsIndicator.setOnPageChangeListener(this);
 
-
         refreshAll();
     }
+
 
     private void refreshAll(){
         buildDrawer();
@@ -67,6 +75,7 @@ public class MainActivity extends ActionBarActivity implements
         mDrawerTabAdapter = new DrawerTabAdapter(getApplicationContext());
         mDrawerList.setAdapter(mDrawerTabAdapter);
         mDrawerList.setOnItemClickListener(this);
+        mDrawerLayout.setFocusableInTouchMode(false);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_navigation_drawer, R.string.drawer_open, R.string.drawer_close) {
@@ -91,8 +100,26 @@ public class MainActivity extends ActionBarActivity implements
         mTabsAdapter.setPress(pressCodeList[index]);
         mTabsIndicator.setViewPager(mTabViewPager);
         mTabViewPager.setCurrentItem(0);
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (mDoubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
 
+        mDoubleBackToExitPressedOnce = true;
+        mDrawerLayout.openDrawer(mDrawerListWrap);
+        Toast.makeText(this, getString(R.string.toast_back_button_exit), Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                mDoubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 
 
@@ -127,16 +154,18 @@ public class MainActivity extends ActionBarActivity implements
         }
 
         switch (item.getItemId()){
-            case R.id.action_settings:
-                String country = ContentHelper.getCountry();
-                if(country.equals("tw_presses")){
-                    ContentHelper.setCountry(1);
-                    refreshAll();
-                }else{
-                    ContentHelper.setCountry(0);
-                    refreshAll();
-                }
-                break;
+            case R.id.action_change_country:
+                String[] countries = getResources().getStringArray(R.array.country_selection_list);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(getString(R.string.country_select_title));
+                builder.setItems(countries, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int index) {
+                        ContentHelper.setCountry(index);
+                        refreshAll();
+                    }
+                });
+                builder.show();
         }
 
         return super.onOptionsItemSelected(item);

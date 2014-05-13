@@ -25,7 +25,7 @@ import android.webkit.WebViewClient;
 import com.djages.common.Utils;
 
 
-public class ArticleWebviewActivity extends ActionBarActivity {
+public class ArticleWebviewActivity extends AdsActivity {
     private ArticleModel mArticle;
     private ArticleModel getArticle(){
         if(mArticle == null){
@@ -157,7 +157,7 @@ public class ArticleWebviewActivity extends ActionBarActivity {
                 mWebView.getSettings().setDisplayZoomControls(false);
                 mWebView.getSettings().setBuiltInZoomControls(true);
                 mWebView.getSettings().setUseWideViewPort(true);
-                mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+                //mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             }
             mWebView.getSettings().setJavaScriptEnabled(true);
 

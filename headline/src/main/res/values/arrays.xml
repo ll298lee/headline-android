@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="country_selection_list">
+        <item>Taiwan (Traditional Chinese)</item>
+        <item>United States (English)</item>
+    </string-array>
+
+
+
     <string-array name="country_list">
         <item>tw_presses</item>
         <item>us_presses</item>

@@ -2,6 +2,10 @@ package com.djages.headline;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.djages.common.DebugLog;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,14 +43,18 @@ public class ContentHelper {
         mContext = CustomApplication.getAppContext();
         mCountryList = mContext.getResources().getStringArray(R.array.country_list);
 
-        //TODO Saved current selection in sp
-        _setCountry(0);
+        //get current selection in sp
+        int countryIndex = SpHelper.getInt(SpHelper.KEY_COUNTRY_INDEX, 0);
+        DebugLog.v(this, "country index in constructor: "+Integer.toString(countryIndex));
+        _setCountry(countryIndex);
     }
 
     private void _setCountry(int index){
         mCountry = mCountryList[index];
         mPressList = mContext.getResources().getStringArray(resIdMap.get(mCountry));
-
+        DebugLog.v(this, "country index: "+ Integer.toString(index));
+        SpHelper.putInt(SpHelper.KEY_COUNTRY_INDEX, index);
+        DebugLog.v(this, "country index saved: "+ Integer.toString(SpHelper.getInt(SpHelper.KEY_COUNTRY_INDEX,0)));
     }
 
     private void _setPress(int press){

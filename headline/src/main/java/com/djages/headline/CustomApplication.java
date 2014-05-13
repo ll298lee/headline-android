@@ -21,6 +21,8 @@ public class CustomApplication extends Application{
         ResolutionHelper.init(getApplicationContext());
     }
 
+
+
     public static CustomApplication getInstance(){
         return sInstance;
     }

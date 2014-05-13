@@ -19,15 +19,20 @@ import android.widget.TextView;
 import com.djages.common.DebugLog;
 import com.djages.common.RESTfulAdapter;
 
+import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
+import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
+import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 
 public class ArticleListFragment extends ScrollEventFragment implements
         AbsListView.OnItemClickListener,
+        OnRefreshListener,
         RESTfulAdapter.RESTfulAdapterEventListener{
 
     private static final String ARG_NAME = "param_name";
     private static final String ARG_CODE = "param_code";
     private static final String ARG_MODELS = "param_models";
+    private static final String ARG_MODELS_BUNDLE = "param_models_bundle";
 
     private String mName;
     private int mCode;
@@ -40,6 +45,7 @@ public class ArticleListFragment extends ScrollEventFragment implements
     //layout view variables
     private ProgressBar mLoadingProgressBar;
     private ProgressBar mLoadMoreProgressBar;
+    private PullToRefreshLayout mPullToRefreshLayout;
 
 
     public static ArticleListFragment newInstance(String name, int code) {
@@ -87,7 +93,13 @@ public class ArticleListFragment extends ScrollEventFragment implements
         if(mAdapter != null && !mAdapter.isEmpty()){
             ArticleModel[] modelArray = new ArticleModel[mAdapter.getCount()];
             modelArray = mAdapter.getModelList().toArray(modelArray);
-            outState.putParcelableArray(ARG_MODELS, modelArray);
+
+
+            Bundle modelsBundle = new Bundle();
+            modelsBundle.putParcelableArray(ARG_MODELS, modelArray);
+
+//            outState.putParcelableArray(ARG_MODELS, modelArray);
+            outState.putBundle(ARG_MODELS_BUNDLE, modelsBundle);
         }
 
     }
@@ -103,8 +115,11 @@ public class ArticleListFragment extends ScrollEventFragment implements
 
             if(savedInstanceState !=null
                     && savedInstanceState.getInt(ARG_CODE)==mCode
-                    && savedInstanceState.containsKey(ARG_MODELS)){
-                Parcelable[] modelArray = savedInstanceState.getParcelableArray(ARG_MODELS);
+                    && savedInstanceState.containsKey(ARG_MODELS_BUNDLE)){
+                Bundle modelsBundle = savedInstanceState.getBundle(ARG_MODELS_BUNDLE);
+                modelsBundle.setClassLoader(getClass().getClassLoader());
+//                savedInstanceState.setClassLoader(this.getClass().getClassLoader());
+                Parcelable[] modelArray = modelsBundle.getParcelableArray(ARG_MODELS);
                 for(int i=0;i<modelArray.length;i++){
                     mAdapter.add((ArticleModel)modelArray[i]);
                 }
@@ -121,7 +136,12 @@ public class ArticleListFragment extends ScrollEventFragment implements
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         mLoadingProgressBar = (ProgressBar) view.findViewById(R.id.loading_progressbar);
         mLoadMoreProgressBar = (ProgressBar) view.findViewById(R.id.load_more_progressbar);
+        mPullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
 
+        ActionBarPullToRefresh.from(getActivity())
+                .allChildrenArePullable()
+                .listener(this)
+                .setup(mPullToRefreshLayout);
 
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
@@ -190,6 +210,7 @@ public class ArticleListFragment extends ScrollEventFragment implements
                 break;
             case FETCH_FINISHED:
                 mLoadingProgressBar.setVisibility(View.GONE);
+                mPullToRefreshLayout.setRefreshComplete();
                 break;
             case LOADMORE_PREPARE:
                 mLoadMoreProgressBar.setVisibility(View.VISIBLE);
@@ -200,6 +221,12 @@ public class ArticleListFragment extends ScrollEventFragment implements
 
         }
 
+    }
+
+    @Override
+    public void onRefreshStarted(View view) {
+        mAdapter.clear();
+        mAdapter.fetch();
     }
 
 

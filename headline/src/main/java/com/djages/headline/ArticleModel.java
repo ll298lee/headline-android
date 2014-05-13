@@ -19,7 +19,7 @@ public class ArticleModel extends AbstractModel implements Parcelable {
     private String description;
     private String author;
     private String pubdate;
-    private String pubDate;
+//    private String pubDate;
     private String date;
 
     public int getPress() {
@@ -102,13 +102,13 @@ public class ArticleModel extends AbstractModel implements Parcelable {
         this.pubdate = pubdate;
     }
 
-    public String getPubDate() {
-        return pubDate;
-    }
-
-    public void setPubDate(String pubDate) {
-        this.pubDate = pubDate;
-    }
+//    public String getPubDate() {
+//        return pubDate;
+//    }
+//
+//    public void setPubDate(String pubDate) {
+//        this.pubDate = pubDate;
+//    }
 
     public String getDate() {
         return date;
@@ -141,7 +141,7 @@ public class ArticleModel extends AbstractModel implements Parcelable {
         description = in.readString();
         author = in.readString();
         pubdate = in.readString();
-        pubDate = in.readString();
+//        pubDate = in.readString();
         date = in.readString();
     }
 
@@ -158,7 +158,7 @@ public class ArticleModel extends AbstractModel implements Parcelable {
         out.writeString(description);
         out.writeString(author);
         out.writeString(pubdate);
-        out.writeString(pubdate);
+//        out.writeString(pubDate);
         out.writeString(date);
         
     }
