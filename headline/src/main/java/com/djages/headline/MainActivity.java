@@ -2,6 +2,7 @@ package com.djages.headline;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -170,6 +171,15 @@ public class MainActivity extends AdsActivity implements
                     }
                 });
                 builder.show();
+                break;
+            case R.id.action_remove_ads:
+                Intent iabIntent = new Intent(this, IabActivity.class);
+                iabIntent.putExtra("type", "purchase");
+                iabIntent.putExtra("title", getString(R.string.action_remove_ads));
+                iabIntent.putExtra("sku", "com.djages.headline.removeads");
+                iabIntent.putExtra("sku_request_code", 10001);
+                startActivityForResult(iabIntent, IabActivity.PURCHASE_REQUEST_CODE);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
