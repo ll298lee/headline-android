@@ -27,6 +27,16 @@
             />
     </uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>
 
+    <Button
+        android:id="@+id/new_article_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:visibility="gone"
+        />
+
     <ProgressBar
         android:id="@+id/load_more_progressbar"
         android:layout_width="30dp"

@@ -22,13 +22,25 @@ android {
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        versionCode 201405130
+        versionName "0.0.1"
     }
+
+    signingConfigs {
+        releaseConfig {
+            storeFile file("other.keystore")
+            storePassword "djages123"
+            keyAlias "optAndroid"
+            keyPassword "djages123"
+        }
+    }
+
     buildTypes {
         release {
-            runProguard false
+            runProguard true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.releaseConfig
         }
     }
 }

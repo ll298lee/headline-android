@@ -160,7 +160,7 @@ public abstract class RESTfulAdapter<T extends AbstractModel> extends
                 }else{
                     queryStr = "";
                 }
-                Log.v("debug", "GET: "+getUrl()+queryStr);
+                DebugLog.v("debug", "GET: "+getUrl()+queryStr);
                 request = new StringRequest(Request.Method.GET, getUrl()+queryStr, future, future);
             }else{
                 request = new StringRequest(Request.Method.POST, getUrl(), future, future){
@@ -348,6 +348,13 @@ public abstract class RESTfulAdapter<T extends AbstractModel> extends
             return null;
         }
         return mList.get(mIdIndexMap.get(id));
+    }
+
+    public boolean containsId(String id){
+        if(!mIdIndexMap.containsKey(id)){
+            return false;
+        }
+        return true;
     }
 
     @Override

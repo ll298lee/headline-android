@@ -40,9 +40,16 @@ public class ArticleListAdapter extends RESTfulAdapter<ArticleModel> {
     }
 
     @Override
-    protected Map<String, String> getParams() {
+    public Map<String, String> getParams() {
         mParams.put("c", Integer.toString(mCode));
+
+        //TODO this is for test
+//        mParams.put("o", Integer.toString(3));
         return mParams;
+    }
+
+    public int getCode(){
+        return mCode;
     }
 
     @Override
@@ -54,7 +61,7 @@ public class ArticleListAdapter extends RESTfulAdapter<ArticleModel> {
     }
 
     @Override
-    protected List parseResponse(String response) {
+    public List<ArticleModel> parseResponse(String response) {
         try {
             Gson gson = GsonHelper.getGson();
             Type listType = new TypeToken<List<ArticleModel>>() {
@@ -66,6 +73,8 @@ public class ArticleListAdapter extends RESTfulAdapter<ArticleModel> {
             return null;
         }
     }
+
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

@@ -7,6 +7,7 @@
     <string name="action_share">Share</string>
 
 
+
     <!--change country-->
     <string name="action_change_country">Change country</string>
     <string name="country_select_title">Select a country</string>
@@ -25,7 +26,13 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_article_webview">ArticleWebviewActivity</string>
 
+    <!--new article-->
+    <string name="new_article_count">%s new articles</string>
+    <string name="new_article_lots">10+ new articles</string>
+
     <!--toast-->
     <string name="toast_back_button_exit">Please click BACK again to exit.</string>
+
+
 
 </resources>

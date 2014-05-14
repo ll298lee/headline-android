@@ -61,6 +61,8 @@ public class MainActivity extends AdsActivity implements
     }
 
 
+
+
     private void refreshAll(){
         buildDrawer();
         int pressTabIndex = SpHelper.getInt(SpHelper.KEY_PRESS_TAB_INDEX,0);
