@@ -4,6 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.djages.common.DebugLog;
@@ -75,11 +78,30 @@ public class ArticleListAdapter extends RESTfulAdapter<ArticleModel> {
     }
 
 
+    private class ViewHolder {
+        public TextView titleView;
+        public TextView dateView;
+
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(mContext).inflate(R.layout.item_article, parent, false);
-        ((TextView)convertView.findViewById(R.id.title)).setText(mList.get(position).getTitle());
+        ViewHolder viewHolder;
+        if(convertView == null){
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_article, parent, false);
+            viewHolder.titleView = (TextView) convertView.findViewById(R.id.article_title);
+            viewHolder.dateView = (TextView) convertView.findViewById(R.id.article_date);
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        ArticleModel article = mList.get(position);
+
+
+        viewHolder.titleView.setText(article.getTitle());
+        viewHolder.dateView.setText(article.getDateString());
         return convertView;
     }
 }

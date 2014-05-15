@@ -19,14 +19,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.djages.common.DebugLog;
 import com.djages.common.RESTfulAdapter;
-import com.djages.common.Utils;
 import com.djages.common.VolleyHelper;
-import com.djages.headline.api.ApiUrls;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
@@ -219,12 +215,12 @@ public class ArticleListFragment extends ScrollEventFragment implements
         if(mCheckNewTime != null){
             shouldCheck = now.getTimeInMillis() - mCheckNewTime.getTimeInMillis() > 1000 * 60 * 5;
             if(shouldCheck){
-                DebugLog.v(this, "last check time is more than thruttle time, so do check");
+                //DebugLog.v(this, "last check time is more than thruttle time, so do check");
             }else{
-                DebugLog.v(this, "last check time is less than thruttle time, no check");
+                //DebugLog.v(this, "last check time is less than thruttle time, no check");
             }
         }else{
-            DebugLog.v(this, "last check time is null, so do check");
+            //DebugLog.v(this, "last check time is null, so do check");
             shouldCheck = true;
         }
 

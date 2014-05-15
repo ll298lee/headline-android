@@ -3,7 +3,19 @@ package com.djages.headline;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
 import com.djages.common.AbstractModel;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.Interval;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
+
+import java.util.TimeZone;
+
 
 /**
  * Created by ll298lee on 5/9/14.
@@ -21,6 +33,10 @@ public class ArticleModel extends AbstractModel implements Parcelable {
     private String pubdate;
 //    private String pubDate;
     private String date;
+
+    //non-remote variables
+    private String formatedDate;
+
 
     public int getPress() {
         return press;
@@ -180,6 +196,17 @@ public class ArticleModel extends AbstractModel implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getDateString(){
+        if(formatedDate == null) {
+            DateTime dt = ISODateTimeFormat.dateTime().parseDateTime(date);
+            //DateTime dtNow = DateTime.now();
+            //Interval interval = new Interval(dt, dtNow);
+            DateTimeFormatter dtf = DateTimeFormat.forPattern("hh:mm aa, MM/dd/yyyy ").withZone(DateTimeZone.forTimeZone(TimeZone.getDefault()));
+            formatedDate = dtf.print(dt);
+        }
+        return formatedDate;
     }
 
     

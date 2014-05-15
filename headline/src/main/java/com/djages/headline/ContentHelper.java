@@ -49,6 +49,7 @@ public class ContentHelper {
 
         //get current selection in sp
 
+
         String country = mContext.getResources().getConfiguration().locale.getCountry();
         DebugLog.v(this, "country of the device: "+ country);
         int defaultCountry = 0;

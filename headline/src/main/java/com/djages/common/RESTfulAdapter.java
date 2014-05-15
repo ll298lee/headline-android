@@ -1,7 +1,6 @@
 package com.djages.common;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.BaseAdapter;
 
 import com.android.volley.Request;
@@ -160,7 +159,7 @@ public abstract class RESTfulAdapter<T extends AbstractModel> extends
                 }else{
                     queryStr = "";
                 }
-                DebugLog.v("debug", "GET: "+getUrl()+queryStr);
+                DebugLog.v("debug", "GET: " + getUrl() + queryStr);
                 request = new StringRequest(Request.Method.GET, getUrl()+queryStr, future, future);
             }else{
                 request = new StringRequest(Request.Method.POST, getUrl(), future, future){
