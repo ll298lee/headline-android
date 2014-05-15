@@ -35,4 +35,6 @@
     <string name="action_remove_ads">Remove ads</string>
     <string name="iab_purchase_failed">Purchase unsuccessful</string>
     <string name="iab_purchase_success">Purchase success</string>
+    <string name="iab_purchase_already_owned">You have already purchased this before</string>
+    <string name="remove_ads_sku">com.djages.headline.removeads</string>
 </resources>

@@ -3,9 +3,11 @@ package com.djages.headline;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -50,7 +52,6 @@ public class MainActivity extends AdsActivity implements
         mTabViewPager = (ViewPager)findViewById(R.id.tab_pager);
         mTabsIndicator = (SlidingTabLayout)findViewById(R.id.tabs);
         mTabsAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-
         mTabViewPager.setAdapter(mTabsAdapter);
         mTabsIndicator.setCustomTabView(R.layout.sliding_tab_layout_tab_view, R.id.tab_text);
         mTabsIndicator.setViewPager(mTabViewPager);
@@ -66,7 +67,7 @@ public class MainActivity extends AdsActivity implements
 
     private void refreshAll(){
         buildDrawer();
-        int pressTabIndex = SpHelper.getInt(SpHelper.KEY_PRESS_TAB_INDEX,0);
+        int pressTabIndex = SpHelper.getInt(SpHelper.KEY_PRESS_TAB_INDEX, 0);
         selectTab(pressTabIndex);
     }
 
@@ -176,9 +177,18 @@ public class MainActivity extends AdsActivity implements
                 Intent iabIntent = new Intent(this, IabActivity.class);
                 iabIntent.putExtra("type", "purchase");
                 iabIntent.putExtra("title", getString(R.string.action_remove_ads));
-                iabIntent.putExtra("sku", "com.djages.headline.removeads");
+                iabIntent.putExtra("sku", getString(R.string.remove_ads_sku));
                 iabIntent.putExtra("sku_request_code", 10001);
                 startActivityForResult(iabIntent, IabActivity.PURCHASE_REQUEST_CODE);
+                break;
+
+            case R.id.action_remove_ads_consume:
+                Intent iabConsumeIntent = new Intent(this, IabActivity.class);
+                iabConsumeIntent.putExtra("type", "consume");
+                iabConsumeIntent.putExtra("title", "Consume removed ads");
+                iabConsumeIntent.putExtra("sku", getString(R.string.remove_ads_sku));
+                iabConsumeIntent.putExtra("sku_request_code", 10001);
+                startActivityForResult(iabConsumeIntent, IabActivity.CONSUME_REQUEST_CODE);
                 break;
         }
 
@@ -204,6 +214,35 @@ public class MainActivity extends AdsActivity implements
         }
 
         mDrawerLayout.closeDrawer(mDrawerListWrap);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == IabActivity.PURCHASE_REQUEST_CODE) {
+            if(resultCode == RESULT_OK) {
+                if(data.getExtras()!=null&&data.getExtras().getString(IabActivity.INTEND_SKU_KEY).equals(getString(R.string.remove_ads_sku))){
+                    Intent intent = new Intent(this, MainActivity.class);
+                    overridePendingTransition(0, 0);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(intent);
+                }
+
+            }
+        }else if(requestCode == IabActivity.CONSUME_REQUEST_CODE){
+            if(resultCode == RESULT_OK) {
+                if(data.getExtras()!=null&&data.getExtras().getString(IabActivity.INTEND_SKU_KEY).equals(getString(R.string.remove_ads_sku))){
+                    Intent intent = new Intent(this, MainActivity.class);
+                    overridePendingTransition(0, 0);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(intent);
+                }
+            }
+        }
     }
 
     @Override

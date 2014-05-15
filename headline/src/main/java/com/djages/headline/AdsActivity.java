@@ -1,6 +1,7 @@
 package com.djages.headline;
 
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
@@ -16,6 +17,11 @@ abstract public class AdsActivity extends ActionBarActivity {
     private AdView adMobAdView;
     private InterstitialAd interstitial;
     private AdRequest mAdreq;
+
+    private boolean hasBoughtRemoveAds(){
+        SharedPreferences sp = getSharedPreferences(IabActivity.SHARED_PREFERENCE_KEY, MODE_PRIVATE);
+        return sp.getBoolean(getString(R.string.remove_ads_sku), false);
+    }
 
 
 
@@ -67,6 +73,8 @@ abstract public class AdsActivity extends ActionBarActivity {
     @Override
     public void onStart(){
         super.onStart();
+        if(hasBoughtRemoveAds()) return;
+
         if(adMobAdView == null || mAdreq == null){
             setupAds();
             adMobAdView.loadAd(mAdreq);
