@@ -23,7 +23,7 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         String name = mCategoryList[position];
-        int code = Integer.parseInt((""+mPressCode)+position);
+        int code = Integer.parseInt((""+mPressCode)+String.format("%02d", position));
         return ArticleListFragment.newInstance(name, code);
     }
 

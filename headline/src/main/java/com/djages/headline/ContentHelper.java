@@ -20,9 +20,17 @@ public class ContentHelper {
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("tw_presses", R.array.tw_presses);
         map.put("us_presses", R.array.us_presses);
-        map.put("categories_100", R.array.categories_100);
-        map.put("categories_101", R.array.categories_101);
-        map.put("categories_102", R.array.categories_102);
+
+
+        map.put("categories_15800", R.array.categories_15800);
+        map.put("categories_15801", R.array.categories_15801);
+        map.put("categories_15802", R.array.categories_15802);
+        map.put("categories_15803", R.array.categories_15803);
+        map.put("categories_15804", R.array.categories_15804);
+        map.put("categories_15805", R.array.categories_15805);
+        map.put("categories_15806", R.array.categories_15806);
+        map.put("categories_15807", R.array.categories_15807);
+
         resIdMap = Collections.unmodifiableMap(map);
 
         Map<String, Integer> countryMap = new HashMap<String, Integer>();
