@@ -17,8 +17,11 @@ public class VolleyHelper {
 
     private VolleyHelper(){
         mRequestQueue = Volley.newRequestQueue(CustomApplication.getAppContext());
+
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+        final int cacheSize = maxMemory / 8;
         mImageLoader = new ImageLoader(this.mRequestQueue, new ImageLoader.ImageCache() {
-            private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
+            private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(cacheSize);
             public void putBitmap(String url, Bitmap bitmap) {
                 mCache.put(url, bitmap);
             }

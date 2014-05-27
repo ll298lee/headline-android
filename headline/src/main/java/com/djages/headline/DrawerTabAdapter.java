@@ -15,7 +15,7 @@ import java.util.List;
  * Created by ll298lee on 5/2/14.
  */
 public class DrawerTabAdapter extends BaseAdapter {
-
+    private int mCurrentTabIndex;
 
     public static class ItemModel{
         private String name;
@@ -48,12 +48,25 @@ public class DrawerTabAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(mContext).inflate(R.layout.item_drawer_tab, parent, false);
 
+        if(mCurrentTabIndex == position){
+            convertView.setBackgroundColor(mContext.getResources().getColor(R.color.color1));
+        }else{
+            convertView.setBackgroundColor(mContext.getResources().getColor(R.color.transparent));
+        }
+
         TextView itemName = (TextView) convertView.findViewById(R.id.item_title);
         int type = mList.get(position).getType();
         String name = mList.get(position).getName();
         itemName.setText(name);
         return convertView;
     }
+
+    public void selectTab(int index){
+        mCurrentTabIndex = index;
+        notifyDataSetChanged();
+    }
+
+
 
 
     @Override

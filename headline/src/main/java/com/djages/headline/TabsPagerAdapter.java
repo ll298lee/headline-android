@@ -21,7 +21,9 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(int index) {
+        int position = ContentHelper.mapCategoryPosition(index, ContentHelper.getPress());
+
         String name = mCategoryList[position];
         int code = Integer.parseInt((""+mPressCode)+String.format("%02d", position));
         return ArticleListFragment.newInstance(name, code);
@@ -35,7 +37,8 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public String getPageTitle(int position){
+    public String getPageTitle(int index){
+        int position = ContentHelper.mapCategoryPosition(index, ContentHelper.getPress());
 
         return mCategoryList == null?"":mCategoryList[position];
     }

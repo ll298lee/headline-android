@@ -16,7 +16,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color18"
+            android:background="@color/color2"
             />
 
 
@@ -44,13 +44,14 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:orientation="vertical"
-        android:background="@color/black"
+        android:background="@color/color2"
         >
         <ListView android:id="@+id/drawer_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:choiceMode="singleChoice"
+            android:divider="@drawable/drawer_divider"
             android:dividerHeight="1dp"
             />
 

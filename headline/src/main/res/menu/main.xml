@@ -3,16 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.djages.headline.MainActivity" >
 
-    <item android:id="@+id/action_change_country"
-        android:title="@string/action_change_country"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
 
-    <item android:id="@+id/action_remove_ads"
-        android:title="@string/action_remove_ads"
-        app:showAsAction="never" />
 
-    <item android:id="@+id/action_remove_ads_consume"
+    <item android:id="@+id/action_menu"
         android:title="consume removed ads"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_action_core_overflow"
+        app:showAsAction="always" >
+        <menu>
+            <!--<item android:id="@+id/action_change_country"-->
+                <!--android:title="@string/action_change_country"-->
+                <!--/>-->
+
+            <item android:id="@+id/action_remove_ads"
+                android:title="@string/action_remove_ads"
+                />
+
+            <!--<item android:id="@+id/action_remove_ads_consume"-->
+                <!--android:title="consume removed ads"-->
+                <!--/>-->
+
+            <item android:id="@+id/action_contact_us"
+                android:title="@string/action_contact_us"
+                />
+
+        </menu>
+    </item>>
 </menu>

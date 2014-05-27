@@ -17,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.djages.common.CustomHeaderTransformer;
 import com.djages.common.DebugLog;
 import com.djages.common.RESTfulAdapter;
 import com.djages.common.VolleyHelper;
@@ -26,6 +27,9 @@ import java.util.List;
 
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
+import uk.co.senab.actionbarpulltorefresh.library.DefaultHeaderTransformer;
+import uk.co.senab.actionbarpulltorefresh.library.HeaderTransformer;
+import uk.co.senab.actionbarpulltorefresh.library.Options;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 
@@ -164,10 +168,21 @@ public class ArticleListFragment extends ScrollEventFragment implements
         mLoadMoreProgressBar = (ProgressBar) view.findViewById(R.id.load_more_progressbar);
         mPullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
 
+        CustomHeaderTransformer transformer = new CustomHeaderTransformer();
+
+
         ActionBarPullToRefresh.from(getActivity())
-                .allChildrenArePullable()
-                .listener(this)
-                .setup(mPullToRefreshLayout);
+            .allChildrenArePullable()
+            .listener(this)
+            .options(Options.create()
+                    .headerTransformer(transformer)
+                    .build())
+            .setup(mPullToRefreshLayout);
+        transformer.setProgressBarColor(getResources().getColor(R.color.color1));
+
+
+
+
 
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);

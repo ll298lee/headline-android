@@ -1,6 +1,13 @@
 package com.djages.headline;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.djages.common.DebugLog;
 import com.djages.common.GsonHelper;
 import com.djages.common.RESTfulAdapter;
+import com.djages.common.VolleyHelper;
 import com.djages.headline.api.ApiUrls;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -80,8 +89,8 @@ public class ArticleListAdapter extends RESTfulAdapter<ArticleModel> {
 
     private class ViewHolder {
         public TextView titleView;
-        public TextView dateView;
-
+        public TextView summaryView;
+        public NetworkImageView imageView;
     }
 
     @Override
@@ -91,7 +100,15 @@ public class ArticleListAdapter extends RESTfulAdapter<ArticleModel> {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_article, parent, false);
             viewHolder.titleView = (TextView) convertView.findViewById(R.id.article_title);
-            viewHolder.dateView = (TextView) convertView.findViewById(R.id.article_date);
+            viewHolder.titleView.setEllipsize(TextUtils.TruncateAt.END);
+            viewHolder.titleView.setMaxLines(2);
+
+            viewHolder.summaryView = (TextView) convertView.findViewById(R.id.article_summary);
+            viewHolder.summaryView.setEllipsize(TextUtils.TruncateAt.END);
+            viewHolder.summaryView.setMaxLines(5);
+
+            viewHolder.imageView = (NetworkImageView) convertView.findViewById(R.id.article_image);
+
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
@@ -101,7 +118,37 @@ public class ArticleListAdapter extends RESTfulAdapter<ArticleModel> {
 
 
         viewHolder.titleView.setText(article.getTitle());
-        viewHolder.dateView.setText(article.getDateString());
+
+        if(article.getImage() != null && !article.getImage().isEmpty()){
+            viewHolder.imageView.setVisibility(View.VISIBLE);
+            viewHolder.imageView.setImageUrl(article.getImage(), VolleyHelper.getImageLoader());
+
+        }else{
+            viewHolder.imageView.setVisibility(View.GONE);
+        }
+
+
+
+
+//        String summaryStr = "<font color=#eb623d>"+article.getDateString()+"</font> <font color=#666666>|  "+article.getDescription()+"</font>";
+
+        String date = article.getDateString();
+        String summary = article.getDescription();
+        final SpannableString text = new SpannableString(date + " |  "+ summary);
+
+        text.setSpan(new RelativeSizeSpan(0.8f),
+                0, date.length()+2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        text.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.color6)),
+                date.length(), date.length()+2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        text.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.color1)),
+                0, date.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+
+        viewHolder.summaryView.setText(text);
+
+
+
         return convertView;
     }
 }

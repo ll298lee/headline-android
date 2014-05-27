@@ -27,12 +27,12 @@ public class ArticleModel extends AbstractModel implements Parcelable {
     private String link;
     private String guid;
     private String image;
-    private String summary;
+//    private String summary;
     private String description;
     private String author;
-    private String pubdate;
-//    private String pubDate;
-    private String date;
+//    private String pubdate;
+    private String pubDate;
+//    private String date;
 
     //non-remote variables
     private String formatedDate;
@@ -86,13 +86,13 @@ public class ArticleModel extends AbstractModel implements Parcelable {
         this.image = image;
     }
 
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+//    public String getSummary() {
+//        return summary;
+//    }
+//
+//    public void setSummary(String summary) {
+//        this.summary = summary;
+//    }
 
     public String getDescription() {
         return description;
@@ -110,29 +110,29 @@ public class ArticleModel extends AbstractModel implements Parcelable {
         this.author = author;
     }
 
-    public String getPubdate() {
-        return pubdate;
-    }
-
-    public void setPubdate(String pubdate) {
-        this.pubdate = pubdate;
-    }
-
-//    public String getPubDate() {
-//        return pubDate;
+//    public String getPubdate() {
+//        return pubdate;
 //    }
 //
-//    public void setPubDate(String pubDate) {
-//        this.pubDate = pubDate;
+//    public void setPubdate(String pubdate) {
+//        this.pubdate = pubdate;
 //    }
 
-    public String getDate() {
-        return date;
+    public String getPubDate() {
+        return pubDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
     }
+
+//    public String getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
     @Override
     public int compareTo(Object model) {
@@ -153,12 +153,12 @@ public class ArticleModel extends AbstractModel implements Parcelable {
         link = in.readString();
         guid = in.readString();
         image = in.readString();
-        summary = in.readString();
+//        summary = in.readString();
         description = in.readString();
         author = in.readString();
-        pubdate = in.readString();
-//        pubDate = in.readString();
-        date = in.readString();
+//        pubdate = in.readString();
+        pubDate = in.readString();
+//        date = in.readString();
     }
 
     @Override
@@ -170,12 +170,12 @@ public class ArticleModel extends AbstractModel implements Parcelable {
         out.writeString(link);
         out.writeString(guid);
         out.writeString(image);
-        out.writeString(summary);
+//        out.writeString(summary);
         out.writeString(description);
         out.writeString(author);
-        out.writeString(pubdate);
-//        out.writeString(pubDate);
-        out.writeString(date);
+//        out.writeString(pubdate);
+        out.writeString(pubDate);
+//        out.writeString(date);
         
     }
 
@@ -200,10 +200,8 @@ public class ArticleModel extends AbstractModel implements Parcelable {
 
     public String getDateString(){
         if(formatedDate == null) {
-            DateTime dt = ISODateTimeFormat.dateTime().parseDateTime(date);
-            //DateTime dtNow = DateTime.now();
-            //Interval interval = new Interval(dt, dtNow);
-            DateTimeFormatter dtf = DateTimeFormat.forPattern("hh:mm aa, MM/dd/yyyy ").withZone(DateTimeZone.forTimeZone(TimeZone.getDefault()));
+            DateTime dt = ISODateTimeFormat.dateTime().parseDateTime(pubDate);
+            DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd • hh:mm aa").withZone(DateTimeZone.forTimeZone(TimeZone.getDefault()));
             formatedDate = dtf.print(dt);
         }
         return formatedDate;

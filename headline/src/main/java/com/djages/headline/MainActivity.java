@@ -3,6 +3,7 @@ package com.djages.headline;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -53,9 +54,10 @@ public class MainActivity extends AdsActivity implements
         mTabViewPager.setAdapter(mTabsAdapter);
         mTabsIndicator.setCustomTabView(R.layout.sliding_tab_layout_tab_view, R.id.tab_text);
         mTabsIndicator.setViewPager(mTabViewPager);
-        mTabsIndicator.setDividerColors(getResources().getColor(R.color.color19));
-        mTabsIndicator.setSelectedIndicatorColors(getResources().getColor(R.color.color12));
+        mTabsIndicator.setDividerColors(getResources().getColor(R.color.color3));
+        mTabsIndicator.setSelectedIndicatorColors(getResources().getColor(R.color.color1));
         mTabsIndicator.setOnPageChangeListener(this);
+
 
         refreshAll();
     }
@@ -90,6 +92,14 @@ public class MainActivity extends AdsActivity implements
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+
+        //first time ux
+        boolean drawerOpenedFirstTime = SpHelper.getBoolean(SpHelper.KEY_FIRST_DRAWER_OPEN, false);
+        if(!drawerOpenedFirstTime){
+            mDrawerLayout.openDrawer(mDrawerListWrap);
+            SpHelper.putBoolean(SpHelper.KEY_FIRST_DRAWER_OPEN, true);
+        }
     }
 
     private void selectTab(int index){
@@ -103,6 +113,8 @@ public class MainActivity extends AdsActivity implements
         mTabsAdapter.setPress(pressCodeList[index]);
         mTabsIndicator.setViewPager(mTabViewPager);
         mTabViewPager.setCurrentItem(0);
+
+        mDrawerTabAdapter.selectTab(index);
     }
 
     @Override
@@ -145,6 +157,14 @@ public class MainActivity extends AdsActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+        SharedPreferences sp = getSharedPreferences(IabActivity.SHARED_PREFERENCE_KEY, MODE_PRIVATE);
+        boolean hasRemovedAds = sp.getBoolean(getString(R.string.remove_ads_sku), false);
+        if(hasRemovedAds){
+            menu.findItem(R.id.action_remove_ads).setVisible(false);
+        }else{
+            menu.findItem(R.id.action_remove_ads).setVisible(true);
+        }
+
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -157,20 +177,20 @@ public class MainActivity extends AdsActivity implements
         }
 
         switch (item.getItemId()){
-            case R.id.action_change_country:
-                String[] countries = getResources().getStringArray(R.array.country_selection_list);
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(getString(R.string.country_select_title));
-                builder.setItems(countries, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int index) {
-                        SpHelper.putInt(SpHelper.KEY_PRESS_TAB_INDEX, 0);
-                        ContentHelper.setCountry(index);
-                        refreshAll();
-                    }
-                });
-                builder.show();
-                break;
+//            case R.id.action_change_country:
+//                String[] countries = getResources().getStringArray(R.array.country_selection_list);
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setTitle(getString(R.string.country_select_title));
+//                builder.setItems(countries, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int index) {
+//                        SpHelper.putInt(SpHelper.KEY_PRESS_TAB_INDEX, 0);
+//                        ContentHelper.setCountry(index);
+//                        refreshAll();
+//                    }
+//                });
+//                builder.show();
+//                break;
             case R.id.action_remove_ads:
                 Intent iabIntent = new Intent(this, IabActivity.class);
                 iabIntent.putExtra("type", "purchase");
@@ -180,13 +200,29 @@ public class MainActivity extends AdsActivity implements
                 startActivityForResult(iabIntent, IabActivity.PURCHASE_REQUEST_CODE);
                 break;
 
-            case R.id.action_remove_ads_consume:
-                Intent iabConsumeIntent = new Intent(this, IabActivity.class);
-                iabConsumeIntent.putExtra("type", "consume");
-                iabConsumeIntent.putExtra("title", "Consume removed ads");
-                iabConsumeIntent.putExtra("sku", getString(R.string.remove_ads_sku));
-                iabConsumeIntent.putExtra("sku_request_code", 10001);
-                startActivityForResult(iabConsumeIntent, IabActivity.CONSUME_REQUEST_CODE);
+//            case R.id.action_remove_ads_consume:
+//                Intent iabConsumeIntent = new Intent(this, IabActivity.class);
+//                iabConsumeIntent.putExtra("type", "consume");
+//                iabConsumeIntent.putExtra("title", "Consume removed ads");
+//                iabConsumeIntent.putExtra("sku", getString(R.string.remove_ads_sku));
+//                iabConsumeIntent.putExtra("sku_request_code", 10001);
+//                startActivityForResult(iabConsumeIntent, IabActivity.CONSUME_REQUEST_CODE);
+//                break;
+
+            case R.id.action_contact_us:
+                String to = getString(R.string.feedback_email_to);
+                String subject = "["+getString(R.string.app_name)+"]"+getString(R.string.feedback_email_subject);
+                String message = "";
+
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.putExtra(Intent.EXTRA_EMAIL, new String[] { to });
+                email.putExtra(Intent.EXTRA_SUBJECT, subject);
+                email.putExtra(Intent.EXTRA_TEXT, message);
+
+                // need this to prompts email client only
+                email.setType("message/rfc822");
+                startActivity(email);
+
                 break;
         }
 
@@ -250,6 +286,7 @@ public class MainActivity extends AdsActivity implements
 
     @Override
     public void onPageSelected(int position) {
+
 
     }
 

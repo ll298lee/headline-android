@@ -19,7 +19,7 @@ public class ContentHelper {
     static {
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("tw_presses", R.array.tw_presses);
-        map.put("us_presses", R.array.us_presses);
+//        map.put("hk_presses", R.array.hk_presses);
 
 
         map.put("categories_15800", R.array.categories_15800);
@@ -30,12 +30,14 @@ public class ContentHelper {
         map.put("categories_15805", R.array.categories_15805);
         map.put("categories_15806", R.array.categories_15806);
         map.put("categories_15807", R.array.categories_15807);
+//        map.put("categories_15808", R.array.categories_15808);
+//        map.put("categories_34400", R.array.categories_34400);
 
         resIdMap = Collections.unmodifiableMap(map);
 
         Map<String, Integer> countryMap = new HashMap<String, Integer>();
         map.put("TW", 0);
-        map.put("US",1);
+//        map.put("HK",1);
         countryCodeMap = Collections.unmodifiableMap(countryMap);
     }
 
@@ -127,6 +129,55 @@ public class ContentHelper {
 
     }
 
+    public static int mapCategoryPosition(int position, int press){
+        switch (press){
+        case 15800:
+            switch (position){
+            case 0: return 0;
+            case 1: return 8;
+            case 2: return 1;
+            case 3: return 2;
+            case 4: return 3;
+            case 5: return 4;
+            case 6: return 5;
+            case 7: return 6;
+            case 8: return 7;
+            default:
+                return position;
+            }
+        case 15801:
+            switch (position){
+            case 0: return 8;
+            case 1: return 0;
+            case 2: return 1;
+            case 3: return 2;
+            case 4: return 3;
+            case 5: return 4;
+            case 6: return 5;
+            case 7: return 6;
+            case 8: return 7;
+            default:
+                return position;
+            }
+        case 15803:
+            switch (position){
+            case 0: return 0;
+            case 1: return 9;
+            case 2: return 1;
+            case 3: return 2;
+            case 4: return 3;
+            case 5: return 4;
+            case 6: return 5;
+            case 7: return 6;
+            case 8: return 7;
+            case 9: return 8;
+            default:
+                return position;
+            }
+        default:
+            return position;
+        }
 
+    }
 
 }

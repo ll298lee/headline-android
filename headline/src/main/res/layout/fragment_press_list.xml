@@ -24,6 +24,9 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingBottom="40dp"
+            android:choiceMode="singleChoice"
+            android:divider="@drawable/list_divider"
+            android:dividerHeight="1dp"
             />
     </uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>
 
@@ -33,8 +36,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/new_article_btn"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="15sp"
+        android:textColor="@color/white"
         android:visibility="gone"
+
         />
 
     <ProgressBar

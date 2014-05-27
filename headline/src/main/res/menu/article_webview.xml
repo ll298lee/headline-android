@@ -16,21 +16,30 @@
 
         <!--</menu>-->
     <!--</item>-->
-    <item android:id="@+id/share_to_apps"
+
+    <item android:id="@+id/action_menu"
         android:title="@string/share_to_other_app"
-        app:showAsAction="never"
+        android:icon="@drawable/ic_action_core_overflow"
+        app:showAsAction="always"
         >
+        <menu>
+            <item android:id="@+id/share_to_apps"
+                android:title="@string/share_to_other_app"
+                >
+            </item>
+            <item android:id="@+id/open_in_browser"
+                android:title="@string/share_open_in_browser"
+                >
+            </item>
+            <item android:id="@+id/copy_link"
+                android:title="@string/share_copy_link"
+                >
+            </item>
+
+        </menu>
     </item>
-    <item android:id="@+id/open_in_browser"
-        android:title="@string/share_open_in_browser"
-        app:showAsAction="never"
-        >
-    </item>
-    <item android:id="@+id/copy_link"
-        android:title="@string/share_copy_link"
-        app:showAsAction="never"
-        >
-    </item>
+
+
 
 
 </menu>

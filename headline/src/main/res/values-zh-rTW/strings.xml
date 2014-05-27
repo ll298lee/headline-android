@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">即刻新聞</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">設定</string>
+    <string name="action_share">分享</string>
+    <string name="action_contact_us">回報與建議</string>
+
+
+    <!-- change country -->
+    <string name="action_change_country">更改國家</string>
+    <string name="country_select_title">選擇一個國家</string>
+
+    <!-- share method -->
+    <string name="share_copy_link">複製連結</string>
+    <string name="share_to_other_app">分享到其他App</string>
+    <string name="share_article_to">分享這篇文章到...</string>
+    <string name="share_from">分享自</string>
+    <string name="share_copy_link_success">以複製連結到剪貼簿</string>
+    <string name="share_open_in_browser">使用瀏覽器開啟文章</string>
+
+    <!-- drawer -->
+    <string name="drawer_open">打開側邊欄</string>
+    <string name="drawer_close">關閉側邊欄</string>
+    <string name="title_activity_article_webview">ArticleWebviewActivity</string>
+
+    <!-- new article -->
+    <string name="new_article_count">%s 篇新文章</string>
+    <string name="new_article_lots">10+ 篇新文章</string>
+
+    <!-- toast -->
+    <string name="toast_back_button_exit">再按一次退回鍵以退出此App</string>
+    <string name="title_activity_iab">IabActivity</string>
+
+    <!--remove ads-->
+    <string name="action_remove_ads">移除廣告</string>
+    <string name="iab_purchase_failed">購買失敗</string>
+    <string name="iab_purchase_success">購買成功</string>
+    <string name="iab_purchase_already_owned">您已經買過了</string>
+    <string name="remove_ads_sku">com.djages.headline.removeads</string>
+
+    <!--pull to refresh-->
+    <string name="pull_to_refresh_text">下拉重新整理</string>
+    <string name="pull_to_refresh_loading">讀取中...</string>
+
+    <!--feedback-->
+    <string name="feedback_email_to">optfantasy@gmail.com</string>
+    <string name="feedback_email_subject">Feedback</string>
+</resources>

@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="14sp"
-    android:textColor="@color/color3"
+    android:textColor="@color/color6"
     android:height="48dp"
     android:gravity="center"
     android:paddingLeft="18dp"

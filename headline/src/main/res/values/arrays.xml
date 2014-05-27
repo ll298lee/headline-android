@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="country_selection_list">
-        <item>Taiwan (Traditional Chinese)</item>
-        <item>United States (English)</item>
+        <item>Taiwan</item>
+        <!--<item>Hong Kong</item>-->
     </string-array>
 
 
 
     <string-array name="country_list">
         <item>tw_presses</item>
+        <!--<item>hk_presses</item>-->
 
     </string-array>
+
+    <!--HK-->
+    <!--<string-array name="hk_presses">-->
+        <!--<item>34400,明報</item>-->
+        <!--<item>15808,華爾街日報中文版</item>-->
+    <!--</string-array>-->
 
 
     <!--TAIWAN-->
@@ -23,6 +30,7 @@
         <item>15805,新頭殼</item>
         <item>15806,中央社</item>
         <item>15807,BBC中文網</item>
+
     </string-array>
 
     <string-array name="categories_15800">
@@ -34,17 +42,19 @@
         <item>娛樂</item>
         <item>國際</item>
         <item>論壇</item>
+        <item>最熱</item>
     </string-array>
 
     <string-array name="categories_15801">
-        <item>國內</item>
-        <item>財經</item>
+        <item>國內要聞</item>
+        <item>財經產業</item>
         <item>兩岸國際</item>
         <item>政治</item>
         <item>意見評論</item>
         <item>社會</item>
         <item>娛樂</item>
         <item>旅遊美食</item>
+        <item>焦點</item>
     </string-array>
 
     <string-array name="categories_15802">
@@ -67,6 +77,7 @@
         <item>財經</item>
         <item>國際</item>
         <item>兩岸</item>
+        <item>焦點</item>
     </string-array>
 
     <string-array name="categories_15804">
@@ -109,10 +120,9 @@
         <item>國際分析</item>
     </string-array>
 
-    <!--US-->
-    <string-array name="us_presses">
 
-    </string-array>
+
+
 
 
 </resources>

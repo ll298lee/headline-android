@@ -1,8 +1,105 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="Theme.Apptheme" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarItemBackground">@drawable/selectable_background_apptheme</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Apptheme</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Apptheme</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Apptheme</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Apptheme</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Apptheme</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_apptheme</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_apptheme</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Apptheme</item>
+        <item name="actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
+
+        <item name="homeAsUpIndicator">@drawable/back</item>
+        <item name="ptrHeaderStyle">@style/Widget.Custom.PtrHeader</item>
+
+
+    </style>
+
+    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_action_core_overflow</item>
+    </style>
+
+    <style name="ActionBar.Solid.Apptheme" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="background">@drawable/actionbar_background</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_apptheme</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_apptheme</item>
+        <item name="progressBarStyle">@style/ProgressBar.Apptheme</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+
+    </style>
+
+    <style name="MyActionBarTitleText"
+        parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/color2</item>
+        <!-- The textColor property is backward compatible with the Support Library -->
+    </style>
+
+    <style name="ActionBar.Transparent.Apptheme" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="background">@drawable/ab_transparent_apptheme</item>
+        <item name="progressBarStyle">@style/ProgressBar.Apptheme</item>
+    </style>
+
+    <style name="PopupMenu.Apptheme" parent="@style/Widget.AppCompat.Light.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_apptheme</item>
+    </style>
+
+    <style name="DropDownListView.Apptheme" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_apptheme</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Apptheme" parent="@style/Widget.AppCompat.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_apptheme</item>
+    </style>
+
+    <style name="DropDownNav.Apptheme" parent="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_apptheme</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_apptheme</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_apptheme</item>
+    </style>
+
+    <style name="ProgressBar.Apptheme" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_apptheme</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Apptheme" parent="@style/Widget.AppCompat.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_apptheme</item>
+    </style>
+
+    <!-- Pull to refresh style-->
+    <style name="Widget.Custom.PtrHeader" parent="android:Widget">
+        <!-- The background of the header view -->
+        <!--<item name="ptrHeaderBackground">...</item>-->
+
+        <!-- The height of the header view. Please note, only set if in you really need to -->
+        <!--<item name="ptrHeaderHeight">...</item>-->
+
+        <!-- TextAppearance of the header view's title text -->
+        <!--<item name="ptrHeaderTitleTextAppearance">...</item>-->
+
+        <!-- Color to tint the progress bar -->
+        <!--<item name="ptrProgressBarColor">@color/color1</item>-->
+
+
+        <!-- Radius of the progress bar corners -->
+        <!--<item name="ptrProgressBarCornerRadius">4dp</item>-->
+
+        <!-- Style of the Progress Bar. Values are either: inside or outside -->
+        <!--<item name="ptrProgressBarStyle">outside</item>-->
+
+        <!-- The strings to be displayed at the various states -->
+        <item name="ptrPullText">@string/pull_to_refresh_text</item>
+        <item name="ptrRefreshingText">@string/pull_to_refresh_loading</item>
+        <!--<item name="ptrReleaseText"></item>-->
+    </style>
+
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Apptheme.Widget" parent="@style/Theme.AppCompat">
+        <item name="popupMenuStyle">@style/PopupMenu.Apptheme</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Apptheme</item>
     </style>
 
 </resources>
