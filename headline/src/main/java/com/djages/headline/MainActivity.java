@@ -21,7 +21,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.djages.common.DebugLog;
+import com.djages.common.GaHelper;
 import com.djages.common.SlidingTabLayout;
+import com.google.android.gms.analytics.GoogleAnalytics;
 
 
 public class MainActivity extends AdsActivity implements
@@ -58,10 +60,21 @@ public class MainActivity extends AdsActivity implements
         mTabsIndicator.setSelectedIndicatorColors(getResources().getColor(R.color.color1));
         mTabsIndicator.setOnPageChangeListener(this);
 
-
+        GaHelper.getTracker(GaHelper.TrackerName.APP_TRACKER);
         refreshAll();
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        GoogleAnalytics.getInstance(CustomApplication.getInstance()).reportActivityStart(this);
+    }
+
+    @Override
+    public void onStop(){
+        GoogleAnalytics.getInstance(CustomApplication.getInstance()).reportActivityStart(this);
+        super.onStop();
+    }
 
 
 
@@ -102,7 +115,7 @@ public class MainActivity extends AdsActivity implements
         }
     }
 
-    private void selectTab(int index){
+    private String selectTab(int index){
 
         DebugLog.v(this, "select tab: "+mDrawerTabAdapter.getItem(index).getName());
         SpHelper.putInt(SpHelper.KEY_PRESS_TAB_INDEX, index);
@@ -115,6 +128,7 @@ public class MainActivity extends AdsActivity implements
         mTabViewPager.setCurrentItem(0);
 
         mDrawerTabAdapter.selectTab(index);
+        return pressNameList[index];
     }
 
     @Override
@@ -177,21 +191,22 @@ public class MainActivity extends AdsActivity implements
         }
 
         switch (item.getItemId()){
-//            case R.id.action_change_country:
-//                String[] countries = getResources().getStringArray(R.array.country_selection_list);
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setTitle(getString(R.string.country_select_title));
-//                builder.setItems(countries, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int index) {
-//                        SpHelper.putInt(SpHelper.KEY_PRESS_TAB_INDEX, 0);
-//                        ContentHelper.setCountry(index);
-//                        refreshAll();
-//                    }
-//                });
-//                builder.show();
-//                break;
+            case R.id.action_change_country:
+                String[] countries = getResources().getStringArray(R.array.country_selection_list);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(getString(R.string.country_select_title));
+                builder.setItems(countries, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int index) {
+                        SpHelper.putInt(SpHelper.KEY_PRESS_TAB_INDEX, 0);
+                        ContentHelper.setCountry(index);
+                        refreshAll();
+                    }
+                });
+                builder.show();
+                break;
             case R.id.action_remove_ads:
+                GaHelper.sendEvent(GaHelper.UI_ACTION, "Click remove ads", "actionbar menu");
                 Intent iabIntent = new Intent(this, IabActivity.class);
                 iabIntent.putExtra("type", "purchase");
                 iabIntent.putExtra("title", getString(R.string.action_remove_ads));
@@ -210,6 +225,7 @@ public class MainActivity extends AdsActivity implements
 //                break;
 
             case R.id.action_contact_us:
+                GaHelper.sendEvent(GaHelper.UI_ACTION, "Click contact us", "actionbar menu");
                 String to = getString(R.string.feedback_email_to);
                 String subject = "["+getString(R.string.app_name)+"]"+getString(R.string.feedback_email_subject);
                 String message = "";
@@ -244,7 +260,9 @@ public class MainActivity extends AdsActivity implements
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(parent.getId() == R.id.drawer_list){
-            selectTab(position);
+            String tabName = selectTab(position);
+            String  label = ContentHelper.getCountry() + "-" +tabName;
+            GaHelper.sendEvent(GaHelper.UI_ACTION, "Click left drawer item", label);
         }
 
         mDrawerLayout.closeDrawer(mDrawerListWrap);

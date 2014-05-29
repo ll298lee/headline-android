@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="country_selection_list">
+        <item>United States</item>
         <item>Taiwan</item>
-        <!--<item>Hong Kong</item>-->
     </string-array>
 
 
 
     <string-array name="country_list">
+        <item>us_presses</item>
         <item>tw_presses</item>
-        <!--<item>hk_presses</item>-->
-
     </string-array>
-
-    <!--HK-->
-    <!--<string-array name="hk_presses">-->
-        <!--<item>34400,明報</item>-->
-        <!--<item>15808,華爾街日報中文版</item>-->
-    <!--</string-array>-->
 
 
     <!--TAIWAN-->
@@ -30,7 +23,17 @@
         <item>15805,新頭殼</item>
         <item>15806,中央社</item>
         <item>15807,BBC中文網</item>
+    </string-array>
 
+    <!--US-->
+    <string-array name="us_presses">
+        <item>84000,USA Today</item>
+        <item>84001,NY Times</item>
+        <item>84002,WSJ</item>
+        <item>84003,NY Post</item>
+        <item>84004,NY Daily News</item>
+        <item>84005,LA Times</item>
+        <item>84006,Reuters</item>
     </string-array>
 
     <string-array name="categories_15800">
@@ -118,6 +121,75 @@
         <item>分析評論</item>
         <item>中國評論</item>
         <item>國際分析</item>
+    </string-array>
+
+    <string-array name="categories_84000">
+        <item>Top Headlines</item>
+        <item>National</item>
+        <item>Washington</item>
+        <item>World</item>
+        <item>Sports</item>
+        <item>Money</item>
+        <item>Entertainment</item>
+    </string-array>
+
+    <string-array name="categories_84001">
+        <item>US</item>
+        <item>Politics</item>
+        <item>Sports</item>
+        <item>Business</item>
+        <item>World</item>
+        <item>Technology</item>
+        <item>Health</item>
+    </string-array>
+
+    <string-array name="categories_84002">
+        <item>Business</item>
+        <item>World</item>
+        <item>Markets News</item>
+        <item>Opinion</item>
+        <item>Technology</item>
+        <item>Lifestyle</item>
+    </string-array>
+
+    <string-array name="categories_84003">
+        <item>News</item>
+        <item>Metro</item>
+        <item>Sports</item>
+        <item>Business</item>
+        <item>Opinion</item>
+        <item>Entertainment</item>
+        <item>Fashion</item>
+    </string-array>
+
+    <string-array name="categories_84004">
+        <item>Top Stories</item>
+        <item>New York</item>
+        <item>US</item>
+        <item>World</item>
+        <item>Politics</item>
+        <item>Crime</item>
+        <item>Education</item>
+    </string-array>
+
+    <string-array name="categories_84005">
+        <item>Local</item>
+        <item>Nation</item>
+        <item>World</item>
+        <item>Sports</item>
+        <item>Business</item>
+        <item>Entertainment</item>
+        <item>Opinion</item>
+    </string-array>
+
+    <string-array name="categories_84006">
+        <item>Top News</item>
+        <item>US News</item>
+        <item>World</item>
+        <item>Sports</item>
+        <item>Business</item>
+        <item>Politics</item>
+        <item>Environment</item>
     </string-array>
 
 

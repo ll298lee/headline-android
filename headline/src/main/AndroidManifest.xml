@@ -14,7 +14,7 @@
     <application
         android:name="com.djages.headline.CustomApplication"
         android:allowBackup="true"
-        android:debuggable="true"
+        android:debuggable="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.Apptheme" >
@@ -24,6 +24,7 @@
 
         <activity
             android:name="com.djages.headline.MainActivity"
+            android:logo="@drawable/app_logo"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +34,7 @@
         </activity>
         <activity
             android:name="com.djages.headline.ArticleWebviewActivity"
+            android:logo="@drawable/app_logo"
             android:label="" >
         </activity>
         <activity
@@ -45,6 +47,7 @@
 
         <activity
             android:name="com.djages.headline.IabActivity"
+            android:logo="@drawable/app_logo"
             android:label="@string/title_activity_iab" >
         </activity>
     </application>

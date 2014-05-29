@@ -10,9 +10,9 @@
         android:icon="@drawable/ic_action_core_overflow"
         app:showAsAction="always" >
         <menu>
-            <!--<item android:id="@+id/action_change_country"-->
-                <!--android:title="@string/action_change_country"-->
-                <!--/>-->
+            <item android:id="@+id/action_change_country"
+                android:title="@string/action_change_country"
+                />
 
             <item android:id="@+id/action_remove_ads"
                 android:title="@string/action_remove_ads"

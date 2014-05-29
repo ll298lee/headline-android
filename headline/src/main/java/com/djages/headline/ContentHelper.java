@@ -18,9 +18,8 @@ public class ContentHelper {
     private static final Map<String, Integer> countryCodeMap;
     static {
         Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("us_presses", R.array.us_presses);
         map.put("tw_presses", R.array.tw_presses);
-//        map.put("hk_presses", R.array.hk_presses);
-
 
         map.put("categories_15800", R.array.categories_15800);
         map.put("categories_15801", R.array.categories_15801);
@@ -30,14 +29,21 @@ public class ContentHelper {
         map.put("categories_15805", R.array.categories_15805);
         map.put("categories_15806", R.array.categories_15806);
         map.put("categories_15807", R.array.categories_15807);
-//        map.put("categories_15808", R.array.categories_15808);
-//        map.put("categories_34400", R.array.categories_34400);
+
+        map.put("categories_84000", R.array.categories_84000);
+        map.put("categories_84001", R.array.categories_84001);
+        map.put("categories_84002", R.array.categories_84002);
+        map.put("categories_84003", R.array.categories_84003);
+        map.put("categories_84004", R.array.categories_84004);
+        map.put("categories_84005", R.array.categories_84005);
+        map.put("categories_84006", R.array.categories_84006);
+
 
         resIdMap = Collections.unmodifiableMap(map);
 
         Map<String, Integer> countryMap = new HashMap<String, Integer>();
-        map.put("TW", 0);
-//        map.put("HK",1);
+        countryMap.put("US",0);
+        countryMap.put("TW", 1);
         countryCodeMap = Collections.unmodifiableMap(countryMap);
     }
 
@@ -63,7 +69,9 @@ public class ContentHelper {
         String country = mContext.getResources().getConfiguration().locale.getCountry();
         DebugLog.v(this, "country of the device: "+ country);
         int defaultCountry = 0;
+//        DebugLog.v(this, "country code map size: "+ countryCodeMap.size());
         if(countryCodeMap.containsKey(country)){
+//            DebugLog.v(this, "country code map contains key: "+ country);
             defaultCountry = countryCodeMap.get(country);
         }
 
@@ -147,8 +155,8 @@ public class ContentHelper {
             }
         case 15801:
             switch (position){
-            case 0: return 8;
-            case 1: return 0;
+            case 0: return 0;
+            case 1: return 8;
             case 2: return 1;
             case 3: return 2;
             case 4: return 3;

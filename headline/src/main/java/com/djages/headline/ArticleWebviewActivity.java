@@ -19,7 +19,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.djages.common.GaHelper;
 import com.djages.common.Utils;
+import com.google.android.gms.analytics.GoogleAnalytics;
 
 
 public class ArticleWebviewActivity extends AdsActivity {
@@ -41,6 +43,19 @@ public class ArticleWebviewActivity extends AdsActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        GaHelper.getTracker(GaHelper.TrackerName.APP_TRACKER);
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        GoogleAnalytics.getInstance(CustomApplication.getInstance()).reportActivityStart(this);
+    }
+
+    @Override
+    public void onStop(){
+        GoogleAnalytics.getInstance(CustomApplication.getInstance()).reportActivityStart(this);
+        super.onStop();
     }
 
 

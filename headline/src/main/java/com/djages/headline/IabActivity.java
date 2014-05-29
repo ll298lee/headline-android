@@ -12,7 +12,9 @@ import com.djages.IAButils.IabResult;
 import com.djages.IAButils.Inventory;
 import com.djages.IAButils.Purchase;
 import com.djages.common.DebugLog;
+import com.djages.common.GaHelper;
 import com.djages.common.Utils;
+import com.google.android.gms.analytics.GoogleAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +55,7 @@ public class IabActivity extends ActionBarActivity implements
                 mSkuRequestCode = getIntent().getExtras().getInt("sku_request_code");
             }
         }
-
+        GaHelper.getTracker(GaHelper.TrackerName.APP_TRACKER);
         setUpIab();
     }
 
@@ -64,6 +66,18 @@ public class IabActivity extends ActionBarActivity implements
         }
         mIabHelper = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        GoogleAnalytics.getInstance(CustomApplication.getInstance()).reportActivityStart(this);
+    }
+
+    @Override
+    public void onStop(){
+        GoogleAnalytics.getInstance(CustomApplication.getInstance()).reportActivityStart(this);
+        super.onStop();
     }
 
     private void setUpIab(){
