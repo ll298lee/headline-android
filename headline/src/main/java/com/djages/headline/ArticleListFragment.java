@@ -2,6 +2,7 @@ package com.djages.headline;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -168,17 +169,25 @@ public class ArticleListFragment extends ScrollEventFragment implements
         mLoadMoreProgressBar = (ProgressBar) view.findViewById(R.id.load_more_progressbar);
         mPullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
 
-        CustomHeaderTransformer transformer = new CustomHeaderTransformer();
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if(currentapiVersion >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            CustomHeaderTransformer transformer = new CustomHeaderTransformer();
+            ActionBarPullToRefresh.from(getActivity())
+                    .allChildrenArePullable()
+                    .listener(this)
+                    .options(Options.create()
+                            .headerTransformer(transformer)
+                            .build())
+                    .setup(mPullToRefreshLayout);
+            transformer.setProgressBarColor(getResources().getColor(R.color.color1));
+        }else{
+            ActionBarPullToRefresh.from(getActivity())
+                    .allChildrenArePullable()
+                    .listener(this)
+                    .setup(mPullToRefreshLayout);
+        }
 
 
-        ActionBarPullToRefresh.from(getActivity())
-            .allChildrenArePullable()
-            .listener(this)
-            .options(Options.create()
-                    .headerTransformer(transformer)
-                    .build())
-            .setup(mPullToRefreshLayout);
-        transformer.setProgressBarColor(getResources().getColor(R.color.color1));
 
 
 
