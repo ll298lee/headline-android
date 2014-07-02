@@ -17,7 +17,7 @@
     <string name="share_to_other_app">分享到其他App</string>
     <string name="share_article_to">分享這篇文章到...</string>
     <string name="share_from">分享自</string>
-    <string name="share_copy_link_success">以複製連結到剪貼簿</string>
+    <string name="share_copy_link_success">已複製連結到剪貼簿</string>
     <string name="share_open_in_browser">使用瀏覽器開啟文章</string>
 
     <!-- drawer -->
@@ -34,7 +34,7 @@
     <string name="title_activity_iab">IabActivity</string>
 
     <!--remove ads-->
-    <string name="action_remove_ads">移除廣告</string>
+    <string name="action_remove_ads">移除底部橫幅廣告</string>
     <string name="iab_purchase_failed">購買失敗</string>
     <string name="iab_purchase_success">購買成功</string>
     <string name="iab_purchase_already_owned">您已經買過了</string>

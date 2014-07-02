@@ -1,6 +1,5 @@
 package com.djages.common;
 
-import android.content.Context;
 import android.content.pm.ApplicationInfo;
 
 import com.djages.headline.CustomApplication;

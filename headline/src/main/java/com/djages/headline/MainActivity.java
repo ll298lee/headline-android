@@ -92,6 +92,7 @@ public class MainActivity extends AdsActivity implements
         mDrawerList.setAdapter(mDrawerTabAdapter);
         mDrawerList.setOnItemClickListener(this);
         mDrawerLayout.setFocusableInTouchMode(false);
+        mDrawerTabAdapter.notifyDataSetChanged();
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_navigation_drawer, R.string.drawer_open, R.string.drawer_close) {

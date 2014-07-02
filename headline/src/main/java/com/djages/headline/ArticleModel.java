@@ -3,16 +3,13 @@ package com.djages.headline;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 import com.djages.common.AbstractModel;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Interval;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-
 
 import java.util.TimeZone;
 

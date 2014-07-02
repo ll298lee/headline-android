@@ -113,6 +113,9 @@ public class IabActivity extends ActionBarActivity implements
         if(!mIsIabConnected) return;
         mIabHelper.launchPurchaseFlow(this, sku, requestCode,
                 this, ""); //todo identify user with last argument
+
+//        mIabHelper.queryInventoryAsync(this);
+
     }
 
     private void consumeItem(String sku){
@@ -166,6 +169,7 @@ public class IabActivity extends ActionBarActivity implements
             DebugLog.e(this, "Error purchasing: " + result);
             if(result.getResponse() == IabHelper.BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED){
                 Utils.showToast(this, getString(R.string.iab_purchase_already_owned));
+                DebugLog.v(this, "already bought:" + mSku);
                 onPurchaseSuccessful(mSku);
                 return;
             }
@@ -212,11 +216,21 @@ public class IabActivity extends ActionBarActivity implements
         }
         if(mSkuToConsume != null){
             for(int i=mSkuToConsume.size()-1;i>=0;i--){
+                DebugLog.v(this, "to consume: "+mSkuToConsume.get(i));
+                DebugLog.v(this, Boolean.toString(inv.getPurchase(mSkuToConsume.get(i))==null));
+
                 mIabHelper.consumeAsync(inv.getPurchase(mSkuToConsume.get(i)), this);
                 mSkuToConsume.remove(i);
             }
             mSkuToConsume = null;
+        }else{
+            DebugLog.v(this, "query inv finished");
+
+            DebugLog.v(this, Boolean.toString(inv.hasPurchase("com.djages.headline.removeads")));
+
         }
+
+
     }
 
 

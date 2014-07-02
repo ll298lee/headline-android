@@ -23,9 +23,10 @@ local.properties
 .idea/
 .gradle
 /*/local.properties
-/*/out
-/*/*/build
-/*/*/production
+/*/out/
+/*/*/build/
+/*/*/production/
+build/
 *.iml
 *.iws
 *.ipr

@@ -34,7 +34,7 @@
     <string name="title_activity_iab">IabActivity</string>
 
     <!--remove ads-->
-    <string name="action_remove_ads">Remove ads</string>
+    <string name="action_remove_ads">Remove bottom banner ads</string>
     <string name="iab_purchase_failed">Purchase unsuccessful</string>
     <string name="iab_purchase_success">Purchase success</string>
     <string name="iab_purchase_already_owned">You have already purchased this before</string>

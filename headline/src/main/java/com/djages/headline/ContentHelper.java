@@ -29,6 +29,7 @@ public class ContentHelper {
         map.put("categories_15805", R.array.categories_15805);
         map.put("categories_15806", R.array.categories_15806);
         map.put("categories_15807", R.array.categories_15807);
+        map.put("categories_15808", R.array.categories_15808);
 
         map.put("categories_84000", R.array.categories_84000);
         map.put("categories_84001", R.array.categories_84001);

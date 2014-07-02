@@ -73,6 +73,7 @@ abstract public class AdsActivity extends ActionBarActivity {
     @Override
     public void onStart(){
         super.onStart();
+        ｀
         if(hasBoughtRemoveAds()) return;
 
         if(adMobAdView == null || mAdreq == null){

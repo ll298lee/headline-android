@@ -28,8 +28,6 @@ import java.util.List;
 
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.DefaultHeaderTransformer;
-import uk.co.senab.actionbarpulltorefresh.library.HeaderTransformer;
 import uk.co.senab.actionbarpulltorefresh.library.Options;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
@@ -172,6 +170,7 @@ public class ArticleListFragment extends ScrollEventFragment implements
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if(currentapiVersion >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             CustomHeaderTransformer transformer = new CustomHeaderTransformer();
+
             ActionBarPullToRefresh.from(getActivity())
                     .allChildrenArePullable()
                     .listener(this)
